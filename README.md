@@ -2,7 +2,7 @@
 
 ![MOTD-Screenshot](screenshot.png)
 
-Custom MOTD scripts based off of PlexMOTD. This is running on Ubuntu, and the scripts are split into manageable chunks.
+Custom MOTD scripts based off of PlexMOTD. This is running on Ubuntu or Debian, and the scripts are split into manageable chunks.
 
 ## Installation
 1. Run the motd install script: 
