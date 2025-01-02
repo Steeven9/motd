@@ -29,14 +29,14 @@ then
 	# Move unzipped motd files to /etc
 	echo "Installing motd"
 	mv motd-master/motd/* /etc/update-motd.d > /dev/null 2>&1
-	rm -f /etc/motd
-	ln -sf /var/run/motd /etc/motd
+	rm -f /etc/motd > /dev/null 2>&1
+	ln -sf /var/run/motd /etc/motd > /dev/null 2>&1
 	echo "Setting permissions"
-	chmod +x /etc/update-motd.d/*
+	chmod +x /etc/update-motd.d/* > /dev/null 2>&1
 
 	# Clean up downloaded files
 	echo "Cleaning up"
-	rm -rf motd-master
+	rm -rf motd-master > /dev/null 2>&1
 	rm -- "$0"
 	echo "Done!"
 else
