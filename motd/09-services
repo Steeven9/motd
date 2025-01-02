@@ -2,6 +2,7 @@
 
 set -euo pipefail
 
+# Maintain proper order when adding items to services_order
 declare -A services
 declare -a services_order
 
