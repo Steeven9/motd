@@ -5,9 +5,17 @@ read -p "Continue? [Y/n] " -r REPLY
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 	# Install packages
-	echo "Installing toilet (this may take up to 10 seconds)"
-	apt-get update >> /dev/null 2>&1
-	apt-get install toilet -y >> /dev/null 2>&1
+    echo "Installing utilities (this may take up to 10 seconds):"
+    echo -n "    - updating repos....."
+    apt-get update >> /dev/null 2>&1
+    echo "done"
+    echo -n "    - toilet............."
+    apt-get install toilet -y >> /dev/null 2>&1
+    echo "done"
+    echo -n "    - colorized-logs....."
+    apt-get install colorized-logs -y >> /dev/null 2>&1
+    echo "done"
+    echo "Utilities installed successfully"
 
 	# Download the archive
 	echo "Downloading motd"
