@@ -2,13 +2,15 @@
 
 source /etc/update-motd.d/colors.txt
 
+PRINT_CONTAINERS=0
+
 if command -v docker &>/dev/null; then
-    RUNNING_CONTAINERS=$(docker ps -q | wc -l) 
-    TOTAL_CONTAINERS=$(docker ps -a -q | wc -l)
-    echo -e " Docker containers...: ${TEXT_COLOR}$RUNNING_CONTAINERS ${NC}/ ${TEXT_COLOR}$TOTAL_CONTAINERS${NC} running:${NC}"
-    if [ "$RUNNING_CONTAINERS" -gt 0 ]; then   
-      docker ps --format "   • {{.Names}}" | while read line; do printf "   %s\n" "$line"; done
-    fi
-  else    
-    echo -e "${TITLE_COLOR} Docker..............: not installed${NC}"
-fi 
+  RUNNING_CONTAINERS=$(docker ps -q | wc -l)
+  TOTAL_CONTAINERS=$(docker ps -a -q | wc -l)
+  echo -e " Docker containers...: ${TEXT_COLOR}$RUNNING_CONTAINERS${NC}/${TEXT_COLOR}$TOTAL_CONTAINERS${NC} running${NC}"
+  if [ "$PRINT_CONTAINERS" -eq 1 ] && [ "$RUNNING_CONTAINERS" -gt 0 ]; then
+    docker ps --format "   • {{.Names}}" | while read line; do printf "   %s\n" "$line"; done
+  fi
+else
+  echo -e "${TITLE_COLOR} Docker..............: not installed${NC}"
+fi
