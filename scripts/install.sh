@@ -1,7 +1,9 @@
 #!/bin/bash
-clear
-echo "Hi! This script will install custom MOTD"
+
+echo "Hi! This script will install custom MOTD."
+echo "Make sure you run this as sudo!"
 read -p "Continue? [Y/n] " -r REPLY
+
 if [[ $REPLY =~ ^[Yy]$ ]]; then
 	source /etc/os-release
 	echo "Detected OS: $PRETTY_NAME"
@@ -11,27 +13,25 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	echo -n "    - updating repos....."
 	apt-get update
 	echo "done"
-	echo -n "    - installing toilet............."
-	apt-get install toilet -y
+	echo -n "    - installing packages............."
+	apt-get install toilet colorized-logs -y
 	echo "done"
-	echo -n "    - installing colorized-logs....."
-	apt-get install colorized-logs -y
-	echo "done"
-	echo "Utilities installed successfully"
 
 	# Download the archive
 	echo "Downloading motd"
 	curl -L https://github.com/Steeven9/motd/archive/master.tar.gz | tar -zxv
 
 	# Move old motd files to directory
-	echo "Backing up old motd to /etc/update-motd.d/old-motd"
-	mkdir /etc/update-motd.d/old-motd
-	mv /etc/update-motd.d/* /etc/update-motd.d/old-motd
+	old_folder_name="/etc/update-motd.d/old-motd-$(date +%s)"
+	echo "Backing up old files to ${old_folder_name}"
+	mkdir $old_folder_name
+	mv /etc/update-motd.d/* $old_folder_name
 
 	# Move unzipped motd files to /etc
 	echo "Installing motd"
 	mv motd-master/motd/* /etc/update-motd.d
 	if [[ $PRETTY_NAME == "Debian" ]]; then
+		echo "Extra steps for Debian"
 		rm -f /etc/motd
 		ln -sf /var/run/motd /etc/motd
 	fi
