@@ -24,7 +24,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   if [[ $ID == "debian" || $ID == "raspbian" ]]; then
     echo "Extra steps for Debian"
     rm -f /etc/motd
-    ln -sf /var/run/motd /etc/motd
+    rm /var/run/motd.dynamic
+    ln -sf /var/run/motd.dynamic.new /etc/motd
   fi
   echo "Setting permissions"
   chmod +x /etc/update-motd.d/*
