@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+source /etc/os-release
+source /etc/update-motd.d/colors.txt
+
+if [[ $ID == "ubuntu" ]]; then
+  num_updates=$(cat /var/lib/update-notifier/updates-available | head -n 2 | tail -n 1 | awk '{print $1}')
+
+  if [ $num_updates -gt 0 ]; then
+    echo -e "${TITLE_COLOR} Updates.............: ${CE}${num_updates}${NC} found"
+  else
+    echo -e "${TITLE_COLOR} Updates.............: ${CO}OK${NC}"
+  fi
+fi

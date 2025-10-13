@@ -6,3 +6,7 @@ NC='\033[0m'
 DEFAULT_COLOR=$NC
 TITLE_COLOR=$NC
 TEXT_COLOR='\033[1;32m'
+
+CO="${CO:-\e[32m}"
+CE="${CE:-\e[31m}"
+CN="${CN:-\e[0m}"

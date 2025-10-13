@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+source /etc/update-motd.d/colors.txt
+
+if [ -f /var/run/reboot-required ]; then
+  echo -e "${TITLE_COLOR} Reboot..............: ${CE}required${NC}"
+fi

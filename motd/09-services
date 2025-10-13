@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+source /etc/update-motd.d/colors.txt
+
 # Maintain proper order when adding items to services_order
 declare -A services
 declare -a services_order
@@ -13,11 +15,6 @@ services_order+=("docker")
 
 services["beszel-agent"]="Monitoring"
 services_order+=("beszel-agent")
-
-# Colors
-CO="${CO:-\e[32m}"
-CE="${CE:-\e[31m}"
-CN="${CN:-\e[0m}"
 
 # Max width used for components in second column
 WIDTH="${WIDTH:-100}"
