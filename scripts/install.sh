@@ -27,18 +27,17 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	mkdir $old_folder_name
 	mv /etc/update-motd.d/* $old_folder_name
 
-	# Put back default updates and reboot notifications
-	cp "${old_folder_name}/90-updates-available" /etc/update-motd.d
-	cp "${old_folder_name}/91-release-upgrade" /etc/update-motd.d
-	cp "${old_folder_name}/98-reboot-required" /etc/update-motd.d
+	# Fix for last login not showing
+	sudo apt install --reinstall -y wtmpdb
 
 	# Move unzipped motd files to /etc
 	echo "Installing motd"
 	mv motd-master/motd/* /etc/update-motd.d
-	if [[ $PRETTY_NAME == "Debian" ]]; then
+	if [[ $ID == "debian" || $ID == "raspbian" ]]; then
 		echo "Extra steps for Debian"
 		rm -f /etc/motd
-		ln -sf /var/run/motd /etc/motd
+		rm /var/run/motd.dynamic
+		ln -sf /var/run/motd.dynamic.new /etc/motd
 	fi
 	echo "Setting permissions"
 	chmod +x /etc/update-motd.d/*

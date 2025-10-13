@@ -20,7 +20,7 @@ Run the install script:
 ```bash
 curl -L https://raw.githubusercontent.com/Steeven9/motd/refs/heads/master/scripts/install.sh > motd_install.sh
 
-sudo chmod +x motd_install.sh && sudo ./motd_install.sh
+chmod +x motd_install.sh && sudo ./motd_install.sh
 ```
 
 ## Customization
@@ -33,3 +33,13 @@ Set `PRINT_CONTAINERS` to 1 in `/etc/update-motd.d/10-docker` if you want
 to see the full list of running Docker containers
 
 Add more scripts!
+
+## Update
+
+If a new version is released, just run this to fetch and apply the scripts:
+
+```bash
+curl -L https://raw.githubusercontent.com/Steeven9/motd/refs/heads/master/scripts/update.sh > motd_update.sh
+
+chmod +x motd_update.sh && sudo ./motd_update.sh
+```
