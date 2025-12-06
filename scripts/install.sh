@@ -19,7 +19,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	# Download the archive
 	echo "Downloading motd"
-	curl -L https://github.com/Steeven9/motd/archive/master.tar.gz | tar -zxv
+	curl -L https://github.com/Steeven9/motd/archive/main.tar.gz | tar -zxv
 
 	# Move old motd files to directory
 	old_folder_name="/etc/update-motd-bkup-$(date +%s)"
@@ -28,11 +28,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	mv /etc/update-motd.d/* $old_folder_name
 
 	# Fix for last login not showing
-	sudo apt install --reinstall -y wtmpdb
+	apt install --reinstall -y wtmpdb
 
 	# Move unzipped motd files to /etc
 	echo "Installing motd"
-	mv motd-master/motd/* /etc/update-motd.d
+	mv motd-main/motd/* /etc/update-motd.d
 	if [[ $ID == "debian" || $ID == "raspbian" ]]; then
 		echo "Extra steps for Debian"
 		rm -f /etc/motd
@@ -49,7 +49,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 	# Clean up downloaded files
 	echo "Cleaning up"
-	rm -rf motd-master
+	rm -rf motd-main
 	echo "Done!"
 else
 	echo "Installation has been cancelled. Bye!"
