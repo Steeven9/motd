@@ -23,7 +23,7 @@ services["pihole-FTL"]="PiHole"
 services_order+=("pihole-FTL")
 
 services["wyoming-staellite"]="Wyoming"
-services_order+=("wyoming-staellite")
+services_order+=("wyoming-satellite")
 
 # Max width used for components in second column
 WIDTH="${WIDTH:-100}"
