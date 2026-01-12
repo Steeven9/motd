@@ -13,8 +13,17 @@ declare -a services_order
 services["docker"]="Docker"
 services_order+=("docker")
 
+services["freepbx"]="FreePBX"
+services_order+=("freepbx")
+
 services["beszel-agent"]="Monitoring"
 services_order+=("beszel-agent")
+
+services["pihole-FTL"]="PiHole"
+services_order+=("pihole-FTL")
+
+services["wyoming-staellite"]="Wyoming"
+services_order+=("wyoming-staellite")
 
 # Max width used for components in second column
 WIDTH="${WIDTH:-100}"
