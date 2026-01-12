@@ -22,7 +22,7 @@ services_order+=("beszel-agent")
 services["pihole-FTL"]="PiHole"
 services_order+=("pihole-FTL")
 
-services["wyoming-staellite"]="Wyoming"
+services["wyoming-satellite"]="Wyoming"
 services_order+=("wyoming-satellite")
 
 # Max width used for components in second column
